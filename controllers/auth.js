@@ -42,6 +42,23 @@ const login = async (req, res) => {
   }
 };
 
+const WhoAmI = async (req, res = response) => {
+  const { name } = req.user;
+
+  try {
+    return res.status(200).json({
+      msg: "Logged in",
+      name,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      msg: "Something went wrong",
+    });
+  }
+};
+
 module.exports = {
   login,
+  WhoAmI,
 };
